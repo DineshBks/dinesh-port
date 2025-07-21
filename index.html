@@ -1,0 +1,118 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dinesh Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'dark';
+      const newTheme = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      document.getElementById('theme-toggle').textContent = newTheme === 'dark' ? '🌙' : '☀️';
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.fade-in').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</head>
+<body data-theme="dark">
+  <nav>
+    <div class="nav__content">
+      <div class="logo">Dinesh BKS</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="toggle-theme" onclick="toggleTheme()" id="theme-toggle">🌙</button>
+    </div>
+  </nav>
+
+  <section class="section fade-in" id="home">
+    <div class="section__container">
+      <img src="assets/profile.jpg" alt="profile" class="profile-pic bounce" />
+      <h1 class="title">Hi, I'm Dinesh-a passionate Web Developer 🚀</h1>
+      <p class="description">
+        Motivated and detail-oriented Electronics and Communication Engineering student with hands-on experience in web development. Proficient in front-end technologies and basic back-end integration. Passionate about building practical applications and eager to grow in full-stack and IoT-based development environments.
+      </p>
+      <div class="action__btns">
+        <a href="https://www.linkedin.com/in/dinesh-b-k-s-9b178326a" target="_blank" class="btn">💼 Hire Me</a>
+        <a href="assets/Dinesh_Resume.pdf" download class="btn">📄 Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-in" id="about">
+    <div class="section__container">
+      <h2 class="title">🙋‍♂️ About Me ✨</h2>
+      <p class="description">
+        I recently completed my B.E. in Electronics and Communication Engineering at Sri Sivasubramaniya Nadar College of Engineering with a CGPA of 7.66. With a strong foundation in HTML, CSS, JavaScript, and back-end tools like PHP and MySQL, I’ve built several web applications such as a note-taking app, event calendar, and task manager. 
+        <br><br>
+        I’m also passionate about IoT and embedded systems, having worked on smart alarm systems, water level monitors using NodeMCU, and animal detection using Raspberry Pi + YOLO. I thrive in team settings and am continuously working on expanding my technical and soft skills to deliver impactful solutions.
+      </p>
+    </div>
+  </section>
+
+  <section class="section fade-in" id="projects">
+    <div class="section__container">
+      <h2 class="title">🛠️ Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">🎯 <strong>Dynamic Event Calendar</strong><p>A responsive PHP + HTML-based calendar app with MySQL backend for managing categorized events.</p></div>
+        <div class="project-card">📝 <strong>Note Taking Application</strong><p>A web-based note app using HTML, CSS, and JavaScript with formatting, search, and categorization features.</p></div>
+        <div class="project-card">✅ <strong>Simple To-Do List</strong><p>A lightweight JavaScript task manager that supports adding, editing, and deleting tasks in a clean UI.</p></div>
+        <div class="project-card">🌿 <strong>Plant Disease Prediction Using ML</strong><p>A Convolutional Neural Network-based classifier to identify plant diseases from leaf images.</p></div>
+        <div class="project-card">⏰ <strong>Alarm System Using Arduino</strong><p>A smart alert system using Arduino, light sensors, and buzzers to signal environmental changes.</p></div>
+        <div class="project-card">💧 <strong>IoT-Based Smart Water Management System</strong><p>A NodeMCU + Ultrasonic sensor setup for monitoring tank water levels in real-time.</p></div>
+        <div class="project-card">🐾 <strong>Smart Animal Detection System for Parked Vehicles</strong><p>A YOLO-powered Raspberry Pi system to detect animals under parked vehicles and trigger alerts via buzzer.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-in" id="contact">
+    <div class="section__container">
+      <h2 class="title">📬 Contact</h2>
+      <p class="description">📧 Email: <a href="mailto:dinesh.bks555@gmail.com">dinesh.bks555@gmail.com</a></p>
+      <p class="description">📱 Phone: +91-7397601305</p>
+      <p class="description">🔗 LinkedIn: <a href="https://linkedin.com/in/dinesh-b-k-s-9b178326a" target="_blank">linkedin.com/in/dinesh-b-k-s</a></p>
+    </div>
+  </section>
+</body>
+</html>
